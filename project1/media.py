@@ -1,6 +1,6 @@
 class Movie(object):
-        """ Class movie that have a constructor method that called """
-        """ when ever an object of the Movie class is constructed """
+        """ Class represent the movies, that have a constructor method that """
+        """ called when ever an object of the Movie class is constructed """
         def __init__(
                 self, title, movie_storyline,
                 poster_image_url, trailer_youtube_url):
