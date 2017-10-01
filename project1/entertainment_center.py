@@ -24,7 +24,7 @@ def get_movies():
                            "Hidden Figures",
                            "Story about brilliant African-American women.",
                            "https://goo.gl/s18NQC",
-                           "https://www.youtube.com/watch?v=5wfrDhgUMGI")            
+                           "https://www.youtube.com/watch?v=5wfrDhgUMGI")          
     beautiful_mind = media.Movie(
                            "A Beautiful Mind",
                            "Story about the mathematical John Forbes Nas.",
@@ -35,9 +35,14 @@ def get_movies():
                        "Story about Dr. Bennet Omalu.",
                        "https://goo.gl/fYDy2W",
                        "https://www.youtube.com/watch?v=LVRIntuk7uc")
+    movies = [imitation_game, storyof_evrything,
+              knew_inf, beautiful_mind, hidden_figures, concussion]
+    return movies
 
 
 def main():
     """ main function """
-    movies = [imitation_game, storyof_evrything, knew_inf,beautiful_mind, hidden_figures, concussion]
+    movies = get_movies()
     fresh_tomatoes.open_movies_page(movies)
+
+main()
