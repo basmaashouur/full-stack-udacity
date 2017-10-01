@@ -8,4 +8,4 @@ This project provides a simple server-side code to store a list of my favorite m
 
 ### How to run
 
-To run the code, clone this repository directory and run `media.py`.  You can view the page by opening `fresh_tomatoes.html`.
+To run the code, clone this repository directory and run `entertainment_center.py`.  You can view the page by opening `fresh_tomatoes.html`.
