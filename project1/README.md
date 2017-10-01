@@ -17,5 +17,5 @@ This project provides a simple server-side code to store a list of my favorite m
 4. Run the program `entertainment_center.py`
  
 ### The Program can be run in two ways:
-    - Through terminal using `python entertainment_center.py`
-    - open IDLE(if installed), **File -> Open -> appropriate folder and choose entertainment_center.py**
+  - Through terminal using `python entertainment_center.py`
+  - open IDLE(if installed), **File -> Open -> appropriate folder and choose entertainment_center.py**
