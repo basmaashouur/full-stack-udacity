@@ -8,7 +8,7 @@ This project provides a simple server-side code to store a list of my favorite m
 
 ### Pre-Requirements
 1. Install Python in the local machine [Click here, if not already installed](https://www.python.org/downloads/)
-2. Create a githib account [Click here, if not already installed]
+2. Create a githib account [Click here, if not already installed](http://product.hubspot.com/blog/git-and-github-tutorial-for-beginners)
 
 ### How to run
 1. Fork this repository. The original repository can be found [here](https://github.com/basmaashouur/full-stack-udacity.git)
