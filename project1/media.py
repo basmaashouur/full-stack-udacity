@@ -1,5 +1,6 @@
-class Movie():
-    def __init__(
+class Movie(object):
+        """ represents a movie """
+        def __init__(
                 self, title, movie_storyline,
                 poster_image_url, trailer_youtube_url):
                     self.title = title
