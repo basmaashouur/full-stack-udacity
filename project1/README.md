@@ -1,6 +1,6 @@
 # Movie Trailer Website: Fresh Tomatoes
 
-by Basma Ashour, in fulfillment of Udacity's [Full-Stack Web Developer Nanodegree](https://www.udacity.com/course/nd004)
+By Basma Ashour, in fulfillment of Udacity's [Full-Stack Web Developer Nanodegree](https://www.udacity.com/course/nd004)
 
 ### About
 
@@ -18,4 +18,4 @@ This project provides a simple server-side code to store a list of my favorite m
  
 ### The Program can be run in two ways:
   - Through terminal using `python entertainment_center.py`
-  - open IDLE(if installed), **File -> Open -> appropriate folder and choose entertainment_center.py**
+  - Open IDLE(if installed), **File -> Open -> appropriate folder and choose entertainment_center.py**
