@@ -66,4 +66,3 @@ order by day desc;
 - SSH to the virtual machine with ```vagrant ssh``` Load the data with ``` psql -d news -f newsdata.sql ```
 - Connect to the psql database with ```psql -d news```
 - Run logs.py using ``` python3 logs.py ```
-  ```
