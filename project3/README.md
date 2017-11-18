@@ -16,15 +16,55 @@ The tool runs three queries for answering to the following questions:
 - Vagrant
 - VirtualBox
 
-### Setup
+### Setup 
 
 - Install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)<br>
 - Download or clone from github [fullstack-nandegree-vm repository](https://github.com/udacity/fullstack-nanodegree-vm)</br>
 - Clone this repository
 
+### Creating views
 
+1. Create table logs that contains the days date and statuts of every day.
+```
+CREATE TABLE logs (
+   day date,
+    stat text
+);
+INSERT INTO logs (day, stat) 
+SELECT log.time::date, log.status 
+FROM log;
+```
+2.Create table oviews and nviews that contains the days date and how many HTTP statue code ok and how many errors in each day.
+```
+REATE TABLE oviews (
+    day date,
+    stat float
+);
+CREATE TABLE nviews (
+   day date,
+    stat float
+);
+INSERT INTO oviews (day, stat) S
+ELECT logs.day, count(*) 
+FROM logs 
+where logs.stat != '200 OK' 
+group by day 
+order by day desc;
+INSERT INTO nviews (day, stat) 
+SELECT logs.day, count(*) 
+FROM logs 
+where logs.stat = '200 OK' 
+group by day 
+order by day desc;
+```
+ 
+  
 ### Run
 
 - From the 'vagrant' directory, run ```vagrant up```
 - SSH to the virtual machine with ```vagrant ssh``` Load the data with ``` psql -d news -f newsdata.sql ```
 - Connect to the psql database with ```psql -d news```
+- Run logs.py using:
+  ```
+    $ python3 logs.py
+  ```
