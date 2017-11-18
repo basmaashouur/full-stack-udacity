@@ -6,9 +6,9 @@ By Basma Ashour, in fulfillment of Udacity's [Full-Stack Web Developer Nanodegre
 
 This project is a tool for reporting some queries in a large database with over milion rows.
 The tool runs three queries for answering to the following questions:
-- What are the most popular three articles of all time?
-- Who are the most popular article authors of all time?
-- On which days did more than 1% of requests lead to errors?
+1. What are the most popular three articles of all time?
+2. Who are the most popular article authors of all time?
+3. On which days did more than 1% of requests lead to errors?
 
 ### Pre-Requirements
 
@@ -25,7 +25,6 @@ The tool runs three queries for answering to the following questions:
 
 ### Run
 
-- From the 'vagrant' directory, run ```vagrant up```
-- SSH to the virtual machine with ```vagrant ssh```
-- Load the data with ``` psql -d news -f newsdata.sql ```
-- Connect to the psql database with ```psql -d news```
+1. From the 'vagrant' directory, run ```vagrant up```
+2. SSH to the virtual machine with ```vagrant ssh``` Load the data with ``` psql -d news -f newsdata.sql ```
+3. Connect to the psql database with ```psql -d news```
