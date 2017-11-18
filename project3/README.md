@@ -34,7 +34,7 @@ INSERT INTO logs (day, stat)
 SELECT log.time::date, log.status 
 FROM log;
 ```
-2.Create table oviews and nviews that contains the days date and how many HTTP statue code ok and how many errors in each day.
+2. Create tables oviews and nviews that contains the days date and how many HTTP statue code ok and how many errors in each day.
 ```
 REATE TABLE oviews (
     day date,
@@ -50,6 +50,7 @@ FROM logs
 where logs.stat != '200 OK' 
 group by day 
 order by day desc;
+
 INSERT INTO nviews (day, stat) 
 SELECT logs.day, count(*) 
 FROM logs 
@@ -64,7 +65,5 @@ order by day desc;
 - From the 'vagrant' directory, run ```vagrant up```
 - SSH to the virtual machine with ```vagrant ssh``` Load the data with ``` psql -d news -f newsdata.sql ```
 - Connect to the psql database with ```psql -d news```
-- Run logs.py using:
-  ```
-    $ python3 logs.py
+- Run logs.py using ``` python3 logs.py ```
   ```
