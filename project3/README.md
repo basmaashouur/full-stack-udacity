@@ -24,7 +24,7 @@ The tool runs three queries for answering to the following questions:
 
 ### Creating views
 
-1. Create table logs that contains the days date and statuts of every day.
+1. Create table logs.
 ```
 CREATE TABLE logs (
    day date,
@@ -34,7 +34,7 @@ INSERT INTO logs (day, stat)
 SELECT log.time::date, log.status 
 FROM log;
 ```
-2. Create tables oviews and nviews that contains the days date and how many HTTP statue code ok and how many errors in each day.
+2. Create tables oviews and nviews.
 ```
 REATE TABLE oviews (
     day date,
