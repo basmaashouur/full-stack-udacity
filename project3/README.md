@@ -36,7 +36,7 @@ FROM log;
 ```
 2. Create tables oviews and nviews.
 ```
-REATE TABLE oviews (
+CREATE TABLE oviews (
     day date,
     stat float
 );
@@ -44,8 +44,8 @@ CREATE TABLE nviews (
    day date,
     stat float
 );
-INSERT INTO oviews (day, stat) S
-ELECT logs.day, count(*) 
+INSERT INTO oviews (day, stat) 
+SELECT logs.day, count(*) 
 FROM logs 
 where logs.stat != '200 OK' 
 group by day 
