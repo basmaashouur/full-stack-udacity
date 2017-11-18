@@ -5,7 +5,7 @@ By Basma Ashour, in fulfillment of Udacity's [Full-Stack Web Developer Nanodegre
 ### About
 
 This project is a tool for reporting some queries in a large database with over milion rows.
-The tool runs three reports for answers to the following questions:
+The tool runs three queries for answering to the following questions:
 - What are the most popular three articles of all time?
 - Who are the most popular article authors of all time?
 - On which days did more than 1% of requests lead to errors?
