@@ -20,7 +20,7 @@ The tool runs three queries for answering to the following questions:
 
 - Install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)<br>
 - Download or clone from github [fullstack-nandegree-vm repository](https://github.com/udacity/fullstack-nanodegree-vm)</br>
-- Clone this reposit''ory
+- Clone this repository
 - Download psql database news [Download](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
 
 ### Creating views
