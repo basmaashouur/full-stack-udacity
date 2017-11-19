@@ -20,49 +20,32 @@ The tool runs three queries for answering to the following questions:
 
 - Install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/)<br>
 - Download or clone from github [fullstack-nandegree-vm repository](https://github.com/udacity/fullstack-nanodegree-vm)</br>
-- Clone this repository
+- Clone this reposit''ory
+- Download psql database news [Download](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
 
 ### Creating views
 
-1. Create table logs.
+1. Create tables oviews and nviews.
 ```
-CREATE TABLE logs (
-   day date,
-    stat text
-);
-INSERT INTO logs (day, stat) 
-SELECT log.time::date, log.status 
-FROM log;
-```
-2. Create tables oviews and nviews.
-```
-CREATE TABLE oviews (
-    day date,
-    stat float
-);
-CREATE TABLE nviews (
-   day date,
-    stat float
-);
-INSERT INTO oviews (day, stat) 
-SELECT logs.day, count(*) 
-FROM logs 
-where logs.stat != '200 OK' 
-group by day 
-order by day desc;
+CREATE VIEW oviews AS
+SELECT time::date AS day, count(*) AS stat
+FROM log
+WHERE status != '200 OK'
+GROUP BY day
+ORDER BY day DESC;
 
-INSERT INTO nviews (day, stat) 
-SELECT logs.day, count(*) 
-FROM logs 
-where logs.stat = '200 OK' 
-group by day 
-order by day desc;
+CREATE VIEW nviews AS
+SELECT time::date AS day, count(*) AS stat
+FROM log
+WHERE status = '200 OK'
+GROUP BY day
+ORDER BY day DESC;
 ```
  
-  
 ### Run
 
 - From the 'vagrant' directory, run ```vagrant up```
 - SSH to the virtual machine with ```vagrant ssh``` Load the data with ``` psql -d news -f newsdata.sql ```
 - Connect to the psql database with ```psql -d news```
+- Run the ``` creating views```
 - Run logs.py using ``` python3 logs.py ```
