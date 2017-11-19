@@ -46,7 +46,8 @@ def connect():
 # Fucntion send the query to the database to excute it and get the results
 def get(query):
     db, cursor = connect()
-    results = cursor.execute(query)
+    cursor.execute(query)
+    results = cursor.fetchall()
     db.close()
     return results
 
