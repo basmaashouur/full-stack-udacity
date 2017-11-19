@@ -26,7 +26,8 @@ order by views desc
 # Query for finidng which days did more than 1% of requests lead to errors
 query3_text = ("3. Days did more than 1% of requests lead to errors:")
 query3 = ("""
-select oviews.day, round((oviews.stat / (nviews.stat + oviews.stat) *100.0),2)
+select oviews.day, 
+round((oviews.stat / (nviews.stat + oviews.stat) *100.0)::numeric,2)
 from nviews, oviews
 where (oviews.stat / (nviews.stat + oviews.stat) *100.0) >1.0
 and oviews.day= nviews.day;
