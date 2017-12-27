@@ -1,17 +1,24 @@
 from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from dbsetup import Base, Category, Item
 
 app = Flask(__name__)
 
+engine = create_engine('sqlite:///catlogitems.db')
+Base.metadata.bind = engine
 
-app.route('/')
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
+
+
 @app.route('/catlog/')
-def showcatlog():
-	return "This the catlog page"
+def showCatlog():
+	#category = session.query(Category).all()
+    return render_template("catlog.html", category=session.query(Category).all())
 
 
-@app.route('/catlog/new/')
+@app.route('/catlog/new/', methods=['GET', 'POST'])
 def addCategory():
 	return "Here you can add a new catogry"
 
