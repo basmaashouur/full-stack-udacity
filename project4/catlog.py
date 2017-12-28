@@ -14,14 +14,18 @@ session = DBSession()
 
 @app.route('/catlog/')
 def showCatlog():
-	#category = session.query(Category).all()
     return render_template("catlog.html", category=session.query(Category).all())
 
 
 @app.route('/catlog/new/', methods=['GET', 'POST'])
 def addCategory():
-	return "Here you can add a new catogry"
-
+    if request.method == 'POST':
+        newcate = Category(title=request.form['title'])
+        session.add(newcate)
+        session.commit()
+        return redirect("/catlog/")
+    else:
+        return render_template('newcategory.html')
 ###############################################################################
 
 
