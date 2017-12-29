@@ -31,7 +31,7 @@ def addCategory():
 
 @app.route('/catlog/<int:category_id>/')
 def showCategory(category_id):
-	return "Here is that catogry name"
+	return render_template('category.html', category=session.query(Category).filter_by(id=category_id).all())
 
 
 @app.route('/catlog/<int:category_id>/items/')
