@@ -28,6 +28,7 @@ class Item(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(80), nullable=False)
     description = Column(String(250))
+    img = Column(String(250))
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship(Category)
 
@@ -37,6 +38,7 @@ class Item(Base):
             'id': self.id,
             'title': self.title,
             'description': self.description,
+            'img': self.img
         }
 
 
