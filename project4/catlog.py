@@ -31,28 +31,37 @@ def addCategory():
 
 @app.route('/catlog/<int:category_id>/')
 def showCategory(category_id):
-	return render_template('category.html', category=session.query(Category).filter_by(id=category_id).all())
+	return render_template('category.html', category=session.query(Category).filter_by(id=category_id).one())
 
 
 @app.route('/catlog/<int:category_id>/items/')
 def showItems(category_id):
-	return "This is all the items of that catogryname"
+	category = session.query(Category).filter_by(id=category_id).one()
+	items = session.query(Item).filter_by(category_id=category_id).all()
+	return render_template('items.html', category=category, items=items)
 
 
-@app.route('/catlog/<int:category_id>/edit/')
+@app.route('/catlog/<int:category_id>/edit/', methods=['GET', 'POST'])
 def editCategory(category_id):
-	return "Here yo can edit catogry name"
+    if request.method == 'POST':
+    	editcate = session.query(Category).filter_by(id=category_id).one()
+    	editcate.title = request.form['title'] 
+        session.add(editcate)
+        session.commit()
+        return redirect(url_for('showCategory', category_id=category_id))
+    else:
+        return render_template('editcategory.html',category_id=category_id)
 
 
-@app.route('/catlog/<int:category_id>/delete/')
+@app.route('/catlog/<int:category_id>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_id):
-	return "Here yo can delete catogry name"
+	return "delete items"
 
 
 ###############################################################################
 
 
-@app.route('/catlog/<int:category_id>/items/newitem/')
+@app.route('/catlog/<int:category_id>/newitem/')
 def addItem(category_id):
 	return "Here you can add a new item"
 
