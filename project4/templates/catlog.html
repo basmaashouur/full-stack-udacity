@@ -1,7 +1,9 @@
+
 <html>
+
 <head>
-	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-	</head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
 
 <body>
 <a href = "/catlog/new/"> Add a new Category</a>
@@ -10,7 +12,9 @@
 
 <div>
 
-<h3>{{i.title}}</h3>
+<h3>
+	<a href= "/catlog/{{i.id}}/">{{i.title}}</a>
+</h3>
 
 </div>
 
@@ -19,3 +23,5 @@
 </body>
 
 </html>
+
+<html>

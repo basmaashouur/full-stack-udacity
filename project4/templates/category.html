@@ -5,25 +5,22 @@
 
 <body>
 
-{% for i in category %}
-<h1> {{i.title}} </h1>
+<h1> {{category.title}} </h1>
 
 <div>
 <h3>
-<a href= "/catlog/{{i.id}}/items/">Show all items in that category</a>
+<a href= "/catlog/{{category.id}}/items/">Show all items in that category</a>
 </h3>
 
 <h3>
-<a href= "/catlog/{{i.id}}/edit/">Edit Category</a>
+<a href= "/catlog/{{category.id}}/edit/">Edit Category</a>
 </h3>
 
 <h3>
-<a href= "/catlog/{{i.id}}/delete/">Delete Category</a>
+<a href= "/catlog/{{category.id}}/delete/">Delete Category</a>
 </h3>
 
 </div>
-
-{% endfor %}
 
 </body>
 
