@@ -14,7 +14,7 @@ session = DBSession()
 
 @app.route('/catlog/')
 def showCatlog():
-    category=session.query(Category).all()
+    category = session.query(Category).all()
     return render_template("catlog.html", category=category)
 
 
@@ -27,6 +27,8 @@ def addCategory():
         return redirect("/catlog/")
     else:
         return render_template('newcategory.html')
+
+
 ###############################################################################
 
 
@@ -52,7 +54,7 @@ def editCategory(category_id):
         session.commit()
         return redirect(url_for('showCategory', category_id=category_id))
     else:
-        return render_template('editcategory.html',category_id=category_id)
+        return render_template('editcategory.html', category_id=category_id)
 
 
 @app.route('/catlog/<int:category_id>/delete/', methods=['GET', 'POST'])
@@ -63,31 +65,56 @@ def deleteCategory(category_id):
         session.commit()
         return redirect("/catlog/")
     else:
-        return render_template('deletecategory.html',category_id=category_id)
+        return render_template('deletecategory.html', category_id=category_id)
+
+
 ###############################################################################
 
 
-@app.route('/catlog/<int:category_id>/newitem/')
+@app.route('/catlog/<int:category_id>/newitem/', methods=['GET', 'POST'])
 def addItem(category_id):
-    return "Here you can add a new item"
+    if request.method == 'POST':
+        newitem = Item(title=request.form['title'], description=request.form['description'], img=request.form['img'],
+                       category_id=category_id)
+        session.add(newitem)
+        session.commit()
+        return redirect(url_for('showItems', category_id=category_id))
+    else:
+        return render_template('newitem.html', category_id=category_id)
 
 
 @app.route('/catlog/<int:category_id>/<int:item_id>/')
 def showItem(category_id, item_id):
-    return "this is an item of that catogryname"
+    item = session.query(Item).filter_by(id=item_id).one()
+    return render_template("item.html", item=item)
 
 
-@app.route('/catlog/<int:category_id>/<int:item_id>/edit/')
+@app.route('/catlog/<int:category_id>/<int:item_id>/edit/', methods=['GET', 'POST'])
 def editItem(category_id, item_id):
-    return "Here you can edit that item name"
-
+    if request.method == 'POST':
+        edititem = session.query(Item).filter_by(id=item_id).one()
+        if request.form['title']:
+            edititem.title = request.form['title']
+        if request.form['description']:
+            edititem.description = request.form['description']
+        if request.form['img']:
+            edititem.img = request.form['img']
+        session.add(edititem)
+        session.commit()
+        return redirect(url_for('showItem', category_id=category_id, item_id=item_id))
+    else:
+        return render_template("edititem.html", category_id=category_id, item_id=item_id)
 
 
 @app.route('/catlog/<int:category_id>/<int:item_id>/delete/')
-def deleteItem(category_id, item_id):
-    return "Here you can delete that item name"
-
-
+def deleteItem(category_id, item_id, methods=['GET', 'POST']):
+    if request.method == 'POST':
+        delitem = session.query(Item).filter_by(id=item_id).one()
+        session.delete(delitem)
+        session.commit()
+        return redirect(url_for('showItem', category_id=category_id, item_id=item_id))
+    else:
+        return render_template('deleteitem.html', category_id=category_id, item_id=item_id)
 
 if __name__ == '__main__':
     app.debug = True

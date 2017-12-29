@@ -1,0 +1,29 @@
+
+<html>
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<h1> Edit this item</h1>
+<div class = 'pane'>
+
+<form action= "{{ url_for('editItem', category_id=category_id, item_id=item_id)}}" method = 'POST'>
+
+
+<dl>
+	<dt>Title:</dt>
+		<dd><input type ='text' size='30' name='title' required></dd>
+    <dt>Description:</dt>
+        <dd><textarea name = 'description' rows='5' cols='40' required></textarea></dd>
+    <dt>Image Link:</dt>
+        <dd><input type = 'text' size = '30' name='img' required></dd>
+</dl>
+
+<input type='submit' value='Create'>
+
+</form>
+</div>
+
+</body>
+</html>

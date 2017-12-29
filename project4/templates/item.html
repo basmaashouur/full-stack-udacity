@@ -1,0 +1,23 @@
+
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<div class = 'pane'>
+<h2> {{item.title}}</h2>
+<div>
+
+<p> Description: {{item.description}} </p>
+<img src="{{item.img}}" alt="Image">
+<a href = "/catlog/{{item.category_id}}/{{item.id}}/edit"> Edit</a>
+<a href = "/catlog/{{item.category_id}}/{{item.id}}/delete"> Delete</a>
+
+</div>
+
+</body>
+</div>
+
+</html>

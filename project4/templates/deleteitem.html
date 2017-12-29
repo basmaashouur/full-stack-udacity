@@ -4,11 +4,11 @@
 </head>
 
 <body>
-<h1> Delete Category</h1>
+<h1> Delete Item</h1>
 <h3> Are you sure you want to delete?</h3>
-<form action="/catlog/{{category_id}}/delete/" method = 'POST'>
+<form action="{{ url_for('deleteItem', category_id=category_id, item_id=item_id)}}" method = 'POST'>
 <input type='submit' value='Delete'>
-<a href = "/catlog/{{category_id}}/"> Cancel </a>
+<a href = "/catlog/{{category_id}}/{{item_id}}/"> Cancel </a>
 </form>
 </body>
 </html>
