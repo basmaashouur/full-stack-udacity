@@ -1,18 +1,19 @@
 {% include "header.html" %}
 
+<html>
+
 <head>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-<a href = "/catalog/{{category.id}}/newitem/"> Add a new Item</a>
 
-{% for i in items %}
+{% for i in category %}
 
 <div>
 
 <h3>
-	<a href= "/catalog/{{category.id}}/{{i.id}}/">{{i.title}}</a>
+	<a href= "/catalog/{{i.id}}/">{{i.title}}</a>
 </h3>
 
 </div>
