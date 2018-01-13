@@ -1,3 +1,4 @@
+#imports
 from flask import Flask, render_template, url_for, request, redirect, flash, jsonify, make_response
 from flask import session as login_session
 from sqlalchemy import create_engine, asc, desc
@@ -8,23 +9,17 @@ from oauth2client.client import FlowExchangeError
 import os, random, string, datetime, json, httplib2, requests
 
 
-
 # Flask instance
-#===================
 app = Flask(__name__)
 
-#===================
+
 # GConnect CLIENT_ID
-#===================
 CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Item-Catalog"
 
-#===================
-# DB
-#===================
-# Connect to database
 
+# Connect to database
 engine = create_engine('sqlite:///catlogitems.db')
 Base.metadata.bind = engine
 
@@ -32,9 +27,7 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-#===================
-# Login Routing
-#===================
+
 # Login - Create anti-forgery state token
 @app.route('/login/')
 def showLogin():
@@ -52,7 +45,7 @@ def gconnect():
         response = make_response(json.dumps('Invalid state parameter.'), 401)
         response.headers['Content-Type'] = 'application/json'
         return response
-    # Obtain authorization code, now compatible with Python3
+    # Obtain authorization code
     code = request.data
 
     try:
@@ -136,6 +129,7 @@ def gconnect():
     flash("you are now logged in as %s" % login_session['username'])
     return output
 
+
 # User Helper Functions
 
 
@@ -160,9 +154,8 @@ def getUserID(email):
     except:
         return None
 
+
 # DISCONNECT - Revoke a current user's token and reset their login_session
-
-
 @app.route('/gdisconnect/')
 def gdisconnect():
         # Only disconnect a connected user.
@@ -195,7 +188,6 @@ def gdisconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
 
-##########################################################################
 
 # Home page
 @app.route('/')
@@ -224,9 +216,7 @@ def addCategory():
 		return render_template('newcategory.html')
 
 
-###############################################################################
-
-# show the categogry
+# Show the categogry
 @app.route('/catalog/<int:category_id>/')
 def showCategory(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
@@ -235,7 +225,8 @@ def showCategory(category_id):
     else:
         return render_template('category.html', category=category)
 
-# Show the items, public
+
+# Show the items in that category id
 @app.route('/catalog/<int:category_id>/items/')
 def showItems(category_id):
     categoryall = session.query(Category).all()
@@ -245,6 +236,7 @@ def showItems(category_id):
         return render_template("publicitems.html", category=category, items=items, categoryall= categoryall)
     else:
         return render_template("items.html", category=category, items=items, categoryall= categoryall)
+
 
 #Edit a category
 @app.route('/catalog/<int:category_id>/edit/', methods=['GET', 'POST'])
@@ -263,6 +255,7 @@ def editCategory(category_id):
     else:
         return render_template('editcategory.html', category_id=category_id)
 
+
 # Delete a category
 @app.route('/catalog/<int:category_id>/delete/', methods=['GET', 'POST'])
 def deleteCategory(category_id):
@@ -280,8 +273,6 @@ def deleteCategory(category_id):
         return render_template('deletecategory.html', category_id=category_id)
 
 
-###############################################################################
-
 #Add a new Item
 @app.route('/catalog/<int:category_id>/newitem/', methods=['GET', 'POST'])
 def addItem(category_id):
@@ -296,9 +287,10 @@ def addItem(category_id):
         session.commit()
         return redirect(url_for('showItems', category_id=category_id))
     else:
+
         return render_template('newitem.html', category_id=category_id)
 
-#show item deatils/ public
+#Show item deatils
 @app.route('/catalog/<int:category_id>/<int:item_id>/')
 def showItem(category_id, item_id):
     item = session.query(Item).filter_by(id=item_id).one()
@@ -307,7 +299,8 @@ def showItem(category_id, item_id):
     else:
         return render_template("item.html", item=item)
 
-# edit an item
+
+# Edit an item
 @app.route('/catalog/<int:category_id>/<int:item_id>/edit/', methods=['GET', 'POST'])
 def editItem(category_id, item_id):
     edititem = session.query(Item).filter_by(id=item_id).one()
@@ -329,7 +322,8 @@ def editItem(category_id, item_id):
     else:
         return render_template("edititem.html", category_id=category_id, item_id=item_id)
 
-# delete an item
+
+# Delete an item
 @app.route('/catalog/<int:category_id>/<int:item_id>/delete/', methods=['GET', 'POST'])
 def deleteItem(category_id, item_id):
     delitem = session.query(Item).filter_by(id=item_id).one()
@@ -346,8 +340,34 @@ def deleteItem(category_id, item_id):
         return render_template('deleteitem.html', category_id=category_id, item_id=item_id)
 
 
+# JSON APIs to view Catalog Information
 
 
+# All the catgories
+@app.route('/catalog/JSON/')
+def categoryJSON():
+    Catgories = session.query(Category).all()
+    return jsonify(Catgories =[r.serialize for r in Catgories])
+
+
+# All items of a specifc category
+@app.route('/catalog/<int:category_id>/items/JSON/')
+def restaurantMenuJSON(category_id):
+    category = session.query(Category).filter_by(id=category_id).one()
+    items = session.query(Item).filter_by(
+        category_id=category_id).all()
+    return jsonify(MenuItems=[i.serialize for i in items])
+
+
+# One item of a specific category
+@app.route('/catalog/<int:category_id>/<int:item_id>/JSON/')
+def menuItemJSON(category_id, item_id):
+    item = session.query(Item).filter_by(id=category_id).one()
+    return jsonify(item=item.serialize)
+
+
+
+#
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
