@@ -5,8 +5,22 @@
 </head>
 
 <body>
-<a href = "/catalog/{{category.id}}/newitem/"> Add a new Item</a>
+	
+<h1> Catgories</h1>
+{% for i in categoryall %}
 
+<div>
+
+<h3>
+	<a href= "/catalog/{{i.id}}/">{{i.title}}</a>
+</h3>
+
+</div>
+
+{% endfor %}
+
+<a href = "/catalog/{{category.id}}/newitem/"> Add a new Item</a>
+<h1> {{category.title}}</h1>
 {% for i in items %}
 
 <div>

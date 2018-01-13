@@ -1,0 +1,22 @@
+{% include "header.html" %}
+
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<div class = 'pane'>
+<h2> {{item.title}}</h2>
+<div>
+
+<p> Description: {{item.description}} </p>
+<img src="{{item.img}}" alt="Image">
+
+</div>
+
+</body>
+</div>
+
+</html>

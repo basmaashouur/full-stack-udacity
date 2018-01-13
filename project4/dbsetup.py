@@ -1,6 +1,6 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy import create_engine
@@ -39,8 +39,10 @@ class Item(Base):
 
     id = Column(Integer, primary_key=True)
     title = Column(String(80), nullable=False)
+    cattitle = Column(String(80), nullable=False)
     description = Column(String(250))
     img = Column(String(250))
+    date = Column(DateTime, nullable=False)
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship(Category, backref=backref('items', cascade='all, delete'))
     user_id = Column(Integer, ForeignKey('user.id'))

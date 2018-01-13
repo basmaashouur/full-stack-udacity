@@ -1,0 +1,21 @@
+{% include "header.html" %}
+
+<html>
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1> {{category.title}} </h1>
+
+<div>
+<h3>
+<a href= "/catalog/{{category.id}}/items/">Show all items in that category</a>
+</h3>
+
+</div>
+
+</body>
+
+</html>

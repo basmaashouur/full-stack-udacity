@@ -7,13 +7,27 @@
 </head>
 
 <body>
-
+<h1> Catgories</h1>
 {% for i in category %}
 
 <div>
 
 <h3>
 	<a href= "/catalog/{{i.id}}/">{{i.title}}</a>
+</h3>
+
+</div>
+
+{% endfor %}
+
+
+<h1> Latest Items</h1>
+{% for i in latestitems %}
+
+<div>
+
+<h3>
+	<a href= "/catalog/{{i.category_id}}/{{i.id}}/">{{i.title}}</a> <font size="2">({{i.cattitle}})</font>
 </h3>
 
 </div>
