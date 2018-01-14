@@ -38,14 +38,13 @@ session = DBSession()
 @app.route('/login/')
 def showLogin():
     state = ''.join(
-        random.choice(string.ascii_uppercase + string.digits) for x in range(32))
+        random.choice(string.ascii_uppercase+string.digits) for x in range(32))
     login_session['state'] = state
     # return "The current session state is %s" % login_session['state']
     return render_template('login.html', STATE=state)
 
+
 # GConnect
-
-
 @app.route('/gconnect/', methods=['POST'])
 def gconnect():
     # Validate state token
@@ -101,8 +100,7 @@ def gconnect():
     stored_access_token = login_session.get('access_token')
     stored_gplus_id = login_session.get('gplus_id')
     if stored_access_token is not None and gplus_id == stored_gplus_id:
-        response = make_response(json.dumps('Current user is already connected.'),
-                                 200)
+        response = make_response(json.dumps('user is already connected.'), 200)
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -184,8 +182,6 @@ def gdisconnect():
         del login_session['email']
         del login_session['picture']
 
-        # response = make_response(json.dumps('Successfully disconnected.'), 200)
-        # response.headers['Content-Type'] = 'application/json'
         response = redirect("/catalog/")
         flash("You are now logged out.")
         return response
@@ -307,9 +303,8 @@ def addItem(category_id):
 
         return render_template('newitem.html', category_id=category_id)
 
+
 # Show item deatils
-
-
 @app.route('/catalog/<int:category_id>/<int:item_id>/')
 def showItem(category_id, item_id):
     item = session.query(Item).filter_by(id=item_id).one()
@@ -367,14 +362,14 @@ def deleteItem(category_id, item_id):
 # JSON APIs to view Catalog Information
 
 
-# All the catgories
+# Displays the whole Categories
 @app.route('/catalog/JSON/')
 def categoryJSON():
     Catgories = session.query(Category).all()
     return jsonify(Catgories=[r.serialize for r in Catgories])
 
 
-# All items of a specifc category
+# Displays items for a specific category
 @app.route('/catalog/<int:category_id>/items/JSON/')
 def restaurantMenuJSON(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
@@ -383,14 +378,13 @@ def restaurantMenuJSON(category_id):
     return jsonify(MenuItems=[i.serialize for i in items])
 
 
-# One item of a specific category
+# Displays a specific category item.
 @app.route('/catalog/<int:category_id>/<int:item_id>/JSON/')
 def menuItemJSON(category_id, item_id):
     item = session.query(Item).filter_by(id=category_id).one()
     return jsonify(item=item.serialize)
 
 
-#
 if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True

@@ -10,14 +10,6 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-# Create fake users
-User1 = User(name="Basma Ashour",
-              email="basmaashouur@gmail.com",
-              picture='https://lh6.googleusercontent.com/--Dj32gThDhg/AAAAAAAAAAI/AAAAAAAAEAE/wVzZWy-LLbg/photo.jpg')
-session.add(User1)
-session.commit()
-
-
 # Create fake categories
 Category1 = Category(title="Competitive programming",
                       user_id=1)
