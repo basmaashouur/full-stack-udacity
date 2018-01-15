@@ -6,7 +6,8 @@
 <body>
 
 
-
+<div class="row">
+ <div class="column">
 <h2> Catgories</h2>
 {% for i in categoryall %}
 <nav>
@@ -15,8 +16,9 @@
 </ul>
 </nav>
 {% endfor %}
+</div>
 
-
+ <div class="column">
 <h2> {{category.title}}</h2>
 {% for i in items %}
 <nav>
@@ -25,7 +27,9 @@
 </ul>
 </nav>
 {% endfor %}
+</div>
 
 
+</div>
 </body>
 </html>

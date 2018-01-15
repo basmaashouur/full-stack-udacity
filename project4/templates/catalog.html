@@ -13,7 +13,7 @@
 {% for i in category %}
 <nav>
 	<ul>
-	<a href= "/catalog/{{i.id}}/">{{i.title}}</a>
+	<li><a href= "/catalog/{{i.id}}/">{{i.title}}</a></li>
 </ul>
 </nav>
 {% endfor %}
@@ -25,7 +25,7 @@
 {% for i in latestitems %}
 <nav>
 	<ul>
-	<a href= "/catalog/{{i.category_id}}/{{i.id}}/">{{i.title}}</a> <font size="2">({{i.cattitle}})</font>
+	<li><a href= "/catalog/{{i.category_id}}/{{i.id}}/">{{i.title}}</a> <font size="2">({{i.cattitle}})</font></li>
 </ul>
 </nav>
 {% endfor %}

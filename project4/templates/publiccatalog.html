@@ -5,6 +5,9 @@
 </head>
 <body>
 
+
+<div class="row">
+ <div class="column">
 <h2> Catgories</h2>
 {% for i in category %}
 <nav>
@@ -13,8 +16,9 @@
 </ul>
 </nav>
 {% endfor %}
+ </div>
 
-
+ <div class="column">
 <h2> Latest Items</h2>
 {% for i in latestitems %}
 <nav>
@@ -23,8 +27,9 @@
 </ul>
 </nav>
 {% endfor %}
+</div>
 
 
-
+</div>
 </body>
 </html>

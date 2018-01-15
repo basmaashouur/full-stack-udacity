@@ -4,6 +4,8 @@
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 
+<div class="row">
+ <div class="column">
 <body>	
 <h2> Catgories</h2>
 {% for i in categoryall %}
@@ -12,8 +14,10 @@
 	<li><a href= "/catalog/{{i.id}}/">{{i.title}}</a></li>
 </ul>
 </nav>
-
 {% endfor %}
+</div>
+
+ <div class="column">
 <a href = "/catalog/{{category.id}}/newitem/"> Add a new Item</a>
 <h2> {{category.title}}</h2>
 {% for i in items %}
@@ -23,8 +27,10 @@
 </ul>
 </nav>
 {% endfor %}
+</div>
 
 
+</div>
 </body>
 </html>
 
