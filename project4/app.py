@@ -300,7 +300,6 @@ def addItem(category_id):
         session.commit()
         return redirect(url_for('showItems', category_id=category_id))
     else:
-
         return render_template('newitem.html', category_id=category_id)
 
 
