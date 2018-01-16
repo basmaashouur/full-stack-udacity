@@ -1,7 +1,10 @@
+
 * {
     font-family: "Helvetica Neue Bold", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 700;
     box-sizing: border-box;
+
+
 
 }
 h1 {
@@ -20,8 +23,9 @@ h2 {
 
 h3 {
     font-size: 18px;
-    color: #4A4A4A;
+    color: #5a5c51;
     line-height: 23px;
+    text-align:center;                 
 }
  p {
     font-family: "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
@@ -44,7 +48,6 @@ h3 {
  }
  header
  {
-background-color:#1d2120;
 
  }
  img
@@ -52,6 +55,56 @@ background-color:#1d2120;
     width:50%;
     border="0" alt="Null"
  }
+
+input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.form {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    color:#5a5c51;
+}
+
+.col-25 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 85%;
+    margin-top: 6px;
+}
+
+
+ .button {
+    background-color: #ba9077; 
+    border: none;
+    color: white;
+     padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    float: right;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #5a5c51;
+}
+
  .column {
     float: left;
     width: 50%;
@@ -64,3 +117,9 @@ background-color:#1d2120;
     clear: both;
 }
 
+@media (max-width: 600px) {
+    .col-25,.col-75, .button {
+        width: 100%;
+        margin-top: 0;
+    }
+}
