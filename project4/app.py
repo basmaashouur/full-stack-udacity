@@ -193,7 +193,7 @@ def gdisconnect():
         return response
 
 
-# Home page
+# Home page 
 @app.route('/')
 @app.route('/catalog/')
 def showCatlog():
@@ -298,9 +298,12 @@ def addItem(category_id):
                        cattitle=cattitle.title)
         session.add(newitem)
         session.commit()
+        flash("Item Successfully Created")
         return redirect(url_for('showItems', category_id=category_id))
     else:
-        return render_template('newitem.html', category_id=category_id)
+        cattitle = session.query(Category).filter_by(id=category_id).one()
+        return render_template('newitem.html', category_id=category_id, 
+                               cattitle=cattitle)
 
 
 # Show item deatils
@@ -332,11 +335,13 @@ def editItem(category_id, item_id):
             edititem.img = request.form['img']
         session.add(edititem)
         session.commit()
+        flash("Item Successfully Edited")
         return redirect(url_for('showItem', category_id=category_id,
                                 item_id=item_id))
     else:
+        edititem = session.query(Item).filter_by(id=item_id).one()
         return render_template("edititem.html", category_id=category_id,
-                               item_id=item_id)
+                               item_id=item_id, edititem=edititem)
 
 
 # Delete an item
