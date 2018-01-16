@@ -6,15 +6,22 @@
 </head>
 
 <body>
-<h1> Edit Category</h1>
 
-<form action="/catalog/{{category_id}}/edit/" method = 'POST'>
-
-<p>Title</p>
-
-<input type='text' size='30' name='title' >
-
-<input type='submit' value='Edit'>
+<form action="/catalog/{{category_id}}/edit/" method = 'POST' class="form">
+<h3> Edit {{editcate.title}}</h3>
+<dl>
+ <div class="roww">
+	<div class="col-10">
+        <label for="lname">Title</label>
+      </div>
+      <div class="col-90">
+	<dd><input type ='text'  placeholder="{{editcate.title}}" name='title' required></dd>
+</div>
+</div>
+</dl>
+ <div class="roww">
+<input type='submit' class="button" value='Edit'>
+</div>
 
 </form>
 

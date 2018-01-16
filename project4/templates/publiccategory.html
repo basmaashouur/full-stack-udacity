@@ -6,16 +6,15 @@
 </head>
 
 <body>
+<form class="form">
+<h2> {{category.title}} </h2>
 
-<h1> {{category.title}} </h1>
+<ul>
+<li><a href= "/catalog/{{category.id}}/items/">Show all items in {{category.title}}</a></li>
+</ul></form>
+</body>
 
-<div>
-<h3>
-<a href= "/catalog/{{category.id}}/items/">Show all items in that category</a>
-</h3>
-
-</div>
-
+</html>
 </body>
 
 </html>

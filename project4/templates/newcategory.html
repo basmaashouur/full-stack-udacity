@@ -6,15 +6,24 @@
 </head>
 
 <body>
-<h1> Add A New Category</h1>
 
-<form action="/catalog/new/" method = 'POST'>
 
-<p>Title</p>
+<form action="/catalog/new/" method = 'POST' class="form">
+<h3> Add A New Category</h3>
 
-<input type='text' size='30' name='title'>
-
-<input type='submit' value='Create'>
+<dl>
+ <div class="roww">
+	<div class="col-10">
+        <label for="lname">Title</label>
+      </div>
+      <div class="col-90">
+	<dd><input type ='text'  placeholder="Write the Title" name='title' required></dd>
+</div>
+</div>
+</dl>
+ <div class="roww">
+<input type='submit' class="button" value='Create'>
+</div>
 
 </form>
 

@@ -7,36 +7,36 @@
 
 <body>
 
-	<h3> Edit {{edititem.title}}</h3>
-<form action= "/catalog/{{category_id}}/{{item_id}}/edit/" method = 'POST' class="form">
 
+<form action= "/catalog/{{category_id}}/{{item_id}}/edit/" method = 'POST' class="form">
+  <h3> Edit {{edititem.title}}</h3>
 <dl>
- <div class="row">
-	<div class="col-25">
+ <div class="roww">
+	<div class="col-10">
         <label for="lname">Title</label>
       </div>
-      <div class="col-75">
+      <div class="col-90">
 	<dd><input type ='text'  placeholder="{{edititem.title}}" name='title' ></dd>
 </div>
 </div>
- <div class="row">
- <div class="col-25">
+ <div class="roww">
+ <div class="col-10">
         <label for="lname">Description</label>
       </div>	
-      <div class="col-75">	
+      <div class="col-90">	
         <dd><textarea name = 'description'  placeholder="{{edititem.description}}" style="height:200px" ></textarea></dd>
 </div>
 </div>
- <div class="row">
-    <div class="col-25">
+ <div class="roww">
+    <div class="col-10">
         <label for="lname">Image link</label>
       </div>
-<div class="col-75">
+<div class="col-90">
         <dd><input type = 'text'  placeholder="{{edititem.img}}" name='img' ></dd>
 </div>
 </div>
 </dl>
- <div class="row">
+ <div class="roww">
 <input type='submit' class="button" value='Edit'>
 </div>
 </form>

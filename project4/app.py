@@ -218,6 +218,7 @@ def addCategory():
         session.add(newcate)
         flash('New Category %s Successfully Created' % newcate.title)
         session.commit()
+        flash("Category Successfully Created")
         return redirect("/catalog/")
     else:
         return render_template('newcategory.html')
@@ -260,9 +261,12 @@ def editCategory(category_id):
         editcate.title = request.form['title']
         session.add(editcate)
         session.commit()
+        flash("Category Successfully Edited")
         return redirect(url_for('showCategory', category_id=category_id))
     else:
-        return render_template('editcategory.html', category_id=category_id)
+        editcate = session.query(Category).filter_by(id=category_id).one()
+        return render_template('editcategory.html', category_id=category_id,
+                               editcate=editcate)
 
 
 # Delete a category
@@ -277,9 +281,12 @@ def deleteCategory(category_id):
     if request.method == 'POST':
         session.delete(delcate)
         session.commit()
+        flash("Category Successfully Deleted")
         return redirect("/catalog/")
     else:
-        return render_template('deletecategory.html', category_id=category_id)
+        delcate = session.query(Category).filter_by(id=category_id).one()
+        return render_template('deletecategory.html', category_id=category_id,
+                                delcate=delcate)
 
 
 # Add a new Item
@@ -357,10 +364,12 @@ def deleteItem(category_id, item_id):
     if request.method == 'POST':
         session.delete(delitem)
         session.commit()
+        flash("Item Successfully Deleted")
         return redirect(url_for('showItems', category_id=category_id))
     else:
+        delitem = session.query(Item).filter_by(id=item_id).one()
         return render_template('deleteitem.html', category_id=category_id,
-                               item_id=item_id)
+                               item_id=item_id, delitem=delitem)
 
 
 # JSON APIs to view Catalog Information

@@ -7,36 +7,36 @@
 
 <body>
 	
-<h3> Add A New Item Into {{cattitle.title}}</h3>
-<form action= "/catalog/{{category_id}}/newitem/" method = 'POST' class="form">
 
+<form action= "/catalog/{{category_id}}/newitem/" method = 'POST' class="form">
+<h3> Add A New Item Into {{cattitle.title}}</h3>
 <dl>
- <div class="row">
-	<div class="col-25">
+ <div class="roww">
+	<div class="col-10">
         <label for="lname">Title</label>
       </div>
-      <div class="col-75">
+      <div class="col-90">
 	<dd><input type ='text'  placeholder="Write the Title" name='title' required></dd>
 </div>
 </div>
- <div class="row">
- <div class="col-25">
+ <div class="roww">
+ <div class="col-10">
         <label for="lname">Description</label>
       </div>	
-      <div class="col-75">	
+      <div class="col-90">	
         <dd><textarea name = 'description'  placeholder="Write the Description" style="height:200px" required></textarea></dd>
 </div>
 </div>
- <div class="row">
-    <div class="col-25">
+ <div class="roww">
+    <div class="col-10">
         <label for="lname">Image link</label>
       </div>
-<div class="col-75">
+<div class="col-90">
         <dd><input type = 'text'  placeholder="Write the Image link" name='img' required></dd>
 </div>
 </div>
 </dl>
- <div class="row">
+ <div class="roww">
 <input type='submit' class="button" value='Create'>
 </div>
 </form>
