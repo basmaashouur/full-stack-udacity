@@ -6,25 +6,40 @@
 </head>
 
 <body>
-<h1> Edit this item</h1>
-<div class = 'pane'>
 
-<form action= "/catalog/{{category_id}}/{{item_id}}/edit/" method = 'POST'>
-
+	<h3> Edit {{edititem.title}}</h3>
+<form action= "/catalog/{{category_id}}/{{item_id}}/edit/" method = 'POST' class="form">
 
 <dl>
-	<dt>Title:</dt>
-		<dd><input type ='text' size='30' name='title' ></dd>
-    <dt>Description:</dt>
-        <dd><textarea name = 'description' rows='5' cols='40' ></textarea></dd>
-    <dt>Image Link:</dt>
-        <dd><input type = 'text' size = '30' name='img' ></dd>
-</dl>
-
-<input type='submit' value='Edit'>
-
-</form>
+ <div class="row">
+	<div class="col-25">
+        <label for="lname">Title</label>
+      </div>
+      <div class="col-75">
+	<dd><input type ='text'  placeholder="{{edititem.title}}" name='title' ></dd>
 </div>
+</div>
+ <div class="row">
+ <div class="col-25">
+        <label for="lname">Description</label>
+      </div>	
+      <div class="col-75">	
+        <dd><textarea name = 'description'  placeholder="{{edititem.description}}" style="height:200px" ></textarea></dd>
+</div>
+</div>
+ <div class="row">
+    <div class="col-25">
+        <label for="lname">Image link</label>
+      </div>
+<div class="col-75">
+        <dd><input type = 'text'  placeholder="{{edititem.img}}" name='img' ></dd>
+</div>
+</div>
+</dl>
+ <div class="row">
+<input type='submit' class="button" value='Edit'>
+</div>
+</form>
 
 </body>
 </html>

@@ -6,26 +6,42 @@
 </head>
 
 <body>
-
-<h1> Add A New Item</h1>
-<div class = 'pane'>
-
-<form action= "/catalog/{{category_id}}/newitem/" method = 'POST'>
-
+	
+<h3> Add A New Item Into {{cattitle.title}}</h3>
+<form action= "/catalog/{{category_id}}/newitem/" method = 'POST' class="form">
 
 <dl>
-	<dt>Title:</dt>
-		<dd><input type ='text' size='30' name='title' required></dd>
-    <dt>Description:</dt>
-        <dd><textarea name = 'description' rows='5' cols='40' required></textarea></dd>
-    <dt>Image Link:</dt>
-        <dd><input type = 'text' size = '30' name='img' required></dd>
-</dl>
-
-<input type='submit' value='Create'>
-
-</form>
+ <div class="row">
+	<div class="col-25">
+        <label for="lname">Title</label>
+      </div>
+      <div class="col-75">
+	<dd><input type ='text'  placeholder="Write the Title" name='title' required></dd>
 </div>
+</div>
+ <div class="row">
+ <div class="col-25">
+        <label for="lname">Description</label>
+      </div>	
+      <div class="col-75">	
+        <dd><textarea name = 'description'  placeholder="Write the Description" style="height:200px" required></textarea></dd>
+</div>
+</div>
+ <div class="row">
+    <div class="col-25">
+        <label for="lname">Image link</label>
+      </div>
+<div class="col-75">
+        <dd><input type = 'text'  placeholder="Write the Image link" name='img' required></dd>
+</div>
+</div>
+</dl>
+ <div class="row">
+<input type='submit' class="button" value='Create'>
+</div>
+</form>
+
+
 
 </body>
 </html>
