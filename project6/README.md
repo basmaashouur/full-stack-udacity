@@ -6,11 +6,11 @@ By Basma Ashour, in fulfillment of Udacity's [Full-Stack Web Developer Nanodegre
 This project is a baseline installation of a Linux server and prepare it to host my web applications. secured my server from a number of attack vectors, installed and configure a database server, and deployed one of my existing web applications onto it.
 
 # Server details
-IP address: `52.56.148.216`
+IP address: `35.178.30.254`
 
 SSH port: `2200`
 
-URL:  [http://52.56.148.216](http://52.56.148.216)
+URL:  [http://35.178.34.134](http://35.178.34.134)
 
 
 # Configuration changes
@@ -35,16 +35,19 @@ sudo usermod -a -G sudo grader
 As root user do:
 ```
 mkdir /home/grader/.ssh
+chown grader:grader /home/grader/.ssh
 chmod 700 /home/grader/.ssh
+cp /root/.ssh/authorized_keys /home/grader/.ssh/
+chown grader:grader /home/grader/.ssh/authorized_keys
 chmod 644 /home/grader/.ssh/authorized_keys
 ```
 
 Can now login as the `grader` user using the command:
-`ssh grader@52.56.148.216 -p 22 -i ~/.ssh/linuxp6`
+`ssh grader@35.178.34.134 -p 22 -i ~/.ssh/linuxrsa`
 
 
 ## Disable root login
-Change the PasswordAuthentication line to no instead of yes in the file `/etc/ssh/sshd_config`:
+Change the PasswordAuthentication line to no instead of yes in the file `sudo nano /etc/ssh/sshd_config`:
 
 - So it reads:
 ```
@@ -59,21 +62,19 @@ If it's not UTC change it like this:
 
 `sudo timedatectl set-timezone UTC`
 
-## Change SSH port from 22 to 2200
+## Add SSH port 2200
 
 - Reconfigure the port for the ssh server:
 `sudo nano /etc/ssh/sshd_config`
-and change:
-`port 22`
-- to:
-`Port 2200`
+- and add:
+`port 2200`
 
 - Then reload the configuration:
 `sudo service ssh force-reload`
 
 - and connect via:
 
-`ssh grader@52.56.148.216 -p 2200 -i ~/.ssh/linuxp6`
+`ssh grader@35.178.34.134 -p 2200 -i ~/.ssh/linuxrsa`
 
 
 ## Configuration Uncomplicated Firewall (UFW)
@@ -120,19 +121,18 @@ By default, block all incoming connections on all ports:
 
 ## Install and configure the PostgreSQL database system
  ```
- sudo apt-get install PostgreSQL
- # check that remote connections are not allowed in PostgreSQL config file
- sudo nano /etc/postgresql/9.3/main/pg_hba.config
- ```
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+```
  
-## create a PostgreSQL role named catalog and a database named catalog
+## Create a PostgreSQL role named catalog and a database named catalog
 ```
 sudo -u postgres -i
-postgres:~$ creatuser catalog
+postgres:~$ createuser catalog
 postgres:~$ createdb catalog
-postgres:~$ psql
+postgres:~$ psql catalog
 postgres=# ALTER DATABASE catalog OWNER TO catalog;
-postgres=# ALTER USER catalog WITH PASSWORD 'catalog'
+postgres=# ALTER USER catalog WITH PASSWORD 'catalog';
 postgres=# \q
 postgres:~$ exit
 
@@ -149,8 +149,6 @@ sudo pip install httplib2
 sudo pip install flask-seasurf
 ```
 
-- An alternative to installing system-wide python modules is to create a virtual 
-environment for each application using the [virualenv][4] package.
 
 ## Install Git version control software
 `sudo apt-get install git`
@@ -167,22 +165,22 @@ sudo git clone https://github.com/basmaashouur/project4.git project4
 
 ## Configure the web application to connect to the PostgreSQL database instead of a SQLite database
  ```
- sudo nano /var/www/project4/app.py
- # change the DATABASE_URI setting in the file from 'sqlite:///catalog.db' to 'postgresql://catalog:db_password@localhost/catalog)', and save
- 
+ sudo nano /var/www/project4/project4/app.py
+ -Change the DATABASE_URI setting in the file from 'sqlite:///catalogitems.db' to 'postgresql://catalog:catalog@localhost/catalog', and save
+``` 
+
+## Configure the Database to connect to the PostgreSQL database instead of a SQLite database
+  ```
+ sudo nano /var/www/project4/project4/dbsetup.py
+ -Change the DATABASE_URI setting in the file from 'sqlite:///catalogitems.db' to 'postgresql://catalog:catalog@localhost/catalog', and save
  ```
  
- ## Create schema and populate the catalog database with sample data
- ```
- python /var/www/project4/fill.py
- 
- ```
  ## Configure Apache to serve the web application using WSGI
 - Create the web application WSGI file.
  ```
 sudo nano /var/www/project4/app.wsgi
 ```
-Add the following lines to the file, and save the file.
+- Add the following lines to the file, and save the file.
 ```
 #!/usr/bin/python
 import sys 
@@ -199,9 +197,21 @@ sudo nano /etc/apache2/sites-enabled/000-default.conf
 ```
 - Add the following line inside the `<VirtualHost *:80>` element, and save the file.
 ```
-        ServerName 52.56.148.216
+        ServerName 35.178.34.134
 	ServerAdmin basmaashouu@gmail.com
 	WSGIScriptAlias / /var/www/project4/app.wsgi
+	<Directory /var/www/project4/project4>
+		Order allow,deny
+		Allow from all
+	</Directory>
+	Alias /static /var/www//project4/project4/static
+	<Directory /var/www/project4/project4/static/>
+		Order allow,deny
+		Allow from all
+	</Directory>
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	LogLevel warn
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
  
 ```
 
@@ -216,3 +226,4 @@ sudo apache2ctl restart
 - [Apache Docs](https://httpd.apache.org/docs/2.4/)
 - [How To Install and Use PostgreSQL on Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-14-04)
 - Stackoverflow and the Readme's of other FSND students on Github.
+- **Special Thanks to *[SteveWooding](https://github.com/SteveWooding)* for a very helpful README**
