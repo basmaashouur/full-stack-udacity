@@ -31,7 +31,7 @@ sudo usermod -a -G sudo grader
 - To actually upgrade the installed packages `apt-get upgrade` 
 
 
-## Set-up SSH keys for user grader
+## Set-up SSH keys for user grader (make sure it's in the same line)
 As root user do:
 ```
 mkdir /home/grader/.ssh
