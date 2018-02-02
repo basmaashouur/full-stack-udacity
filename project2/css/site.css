@@ -1,43 +1,212 @@
+* {
+  box-sizing: border-box;
+
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  color: #ba9077;
+}
 
 h1,
 h2,
 h3,
 h4 {
   font-family: 'Julius Sans One', sans-serif;
-  margin: 0; }
+  margin: 0;
+}
+
+
+p {
+  margin: 0;
+}
+
+a.github-link {
+  font-weight: 400;
+  color: #5a5c51;
+  text-decoration: none;
+}
+
+a.github-link:hover {
+  background-color: #efebdc;
+}
 
 .header {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  border-bottom: 4px solid #529671;
-  margin-bottom: 20px; }
+  flex-wrap: wrap;
+  flex-direction: column;
+  border-bottom: 4px solid #5a5c51;
+  margin-bottom: 20px;
+}
 
 .logo-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 20%; }
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
 
 .name-title {
-  text-transform: uppercase; }
+  text-transform: uppercase;
+}
 
 .name {
   margin: 0;
-  line-height: 1.4; }
+  line-height: 1.4;
+}
 
 .title {
-  line-height: 1.2; }
+  line-height: 1.2;
+}
+
+.hero {
+  margin-bottom: 30px;
+  width: 100%;
+  height: auto;
+}
+
+.projects-title {
+  padding-bottom: 10px;
+}
+
+.project-card {
+  text-align: center;
+   padding-bottom: 5px;
+}
+
+.project-name {
+  font-size: 22px;
+  padding: 10px 0;
+}
+
+.project-img {
+  max-width: 100%;
+  margin: 0;
+  width:200;
+  height:100;
+}
+
+.project-description {
+  font-size: 17px;
+  padding: 0 10px;
+  line-height: 1.4;
+}
+
+.project-link {
+  font-size: 17px;
+  padding: 20px 0;
+}
+
+.footer {
+  border-top: 1px solid #bbb;
+  padding: 6px 0 20px;
+  text-align: center;
+}
+
+
+
+/**************************************************
+ * Viewport - 1 Column
+ **************************************************/
+
+@media screen and (max-width: 599px) {
+  .header {
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .logo {
+    padding-bottom: 10px;
+  }
+
+  .name {
+    font-size: 38px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
 
   .hero {
-  margin-bottom: 30px; }
-  img {
-  max-width: 100%; }
+    margin-bottom: 20px;
+  }
+
+  .projects-title {
+    font-size: 32px;
+  }
+
+  .project-link {
+    font-size: 17px;
+  }
+
+}
+
+
+/**************************************************
+ * Viewport 600px - 2 Columns
+ **************************************************/
+
+@media screen and (min-width: 600px){
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .name-title {
+    text-align: right;
+  }
+
+  .name {
+    font-size: 40px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+  .projects-title {
+    font-size: 28px;
+  }
+
+}
+
+
+
+
+/**************************************************
+ * Viewport 1100px - 3 Columns and Fixed width
+ **************************************************/
+
+@media screen and (min-width: 1100px) {
+  .container {
+    width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header {
+    padding: 20px;
+  }
+
+  .name {
+    font-size: 50px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .project-name {
+    font-size: 24px;
+  }
+
+   .projects-title {
+    font-size: 28px;
+  }
+
+  .project-description,
+  .project-link {
+    font-size: 18px;
+  }
+
+}
