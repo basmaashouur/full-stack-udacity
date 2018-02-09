@@ -6,11 +6,11 @@ By Basma Ashour, in fulfillment of Udacity's [Full-Stack Web Developer Nanodegre
 This project is a baseline installation of a Linux server and prepare it to host my web applications. secured my server from a number of attack vectors, installed and configure a database server, and deployed one of my existing web applications onto it.
 
 # Server details
-IP address: `35.178.30.254`
+IP address: `35.178.34.134`
 
 SSH port: `2200`
 
-URL:  [http://35.178.34.134](http://35.178.34.134)
+URL:  ~~[http://35.178.34.134](http://35.178.34.134)~~
 
 
 # Configuration changes
@@ -31,7 +31,7 @@ sudo usermod -a -G sudo grader
 - To actually upgrade the installed packages `apt-get upgrade` 
 
 
-## Set-up SSH keys for user grader (make sure it's in the same line)
+## Set-up SSH keys for user grader
 As root user do:
 ```
 mkdir /home/grader/.ssh
@@ -162,6 +162,14 @@ sudo chown -R grader:grader project4
 cd project4
 sudo git clone https://github.com/basmaashouur/project4.git project4
 ```
+
+## Configure the Catalog app
+- Change `app.py` to `__init__.py`
+-  Provide the full path (or location) to all the files, instead of just the filename
+
+## Configure Google OAuth
+- Add the public IP address of your server to the “Authorized javascript origins”
+- Add the public IP address to the client secrets JSON file
 
 ## Configure the web application to connect to the PostgreSQL database instead of a SQLite database
  ```
